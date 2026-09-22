@@ -19,9 +19,9 @@
   --schaduw: 6px 6px 0 var(--inkt);
   --schaduw-klein: 4px 4px 0 var(--inkt);
 
-  --font-kop: 'Bricolage Grotesque', sans-serif;
-  --font-tekst: 'DM Sans', system-ui, sans-serif;
-  --font-hand: 'Caveat', cursive;
+  --font-kop: var(--font-bricolage), sans-serif;
+  --font-tekst: var(--font-dm-sans), system-ui, sans-serif;
+  --font-hand: var(--font-caveat), cursive;
 
   --gutter: 20px;
   --max: 1200px;

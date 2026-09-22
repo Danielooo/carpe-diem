@@ -4,12 +4,18 @@ Persoonlijke website rond "Carpe Diem – pluk de dag". Grappig, warm en eigenzi
 
 ## Techniek
 
-- Gewone statische site: HTML, één stylesheet, vanilla JavaScript. Geen framework, geen build-stap. Houd dat zo tenzij we er expliciet om vragen.
-- `index.html` homepage · `karper.html` De Diem Karper (quote van de dag) · `404.html` foutpagina.
-- `css/style.css` alle stijl, mobile-first. Breakpoints: 720px (tablet) en 1100px (desktop).
-- `js/main.js` pluk-tip, mobiel menu, bucketlist, dagteller · `js/karper.js` quotes.
-- `img/` voor foto's en de favicon.
-- Lokaal bekijken: `python3 -m http.server` in deze map, dan http://localhost:8000.
+- Next.js (App Router) met TypeScript en React. Geen CSS-framework en geen component-library: alle stijl staat met de hand in één stylesheet. Houd dat zo tenzij we er expliciet om vragen.
+- `app/page.tsx` homepage · `app/karper/page.tsx` De Diem Karper (quote van de dag) · `app/not-found.tsx` foutpagina.
+- `app/globals.css` alle stijl, mobile-first. Breakpoints: 720px (tablet) en 1100px (desktop).
+- `components/` de losse stukken. Alleen wat op een klik of op de datum reageert krijgt `'use client'`; de rest blijft server component.
+- `lib/inhoud.ts` alle teksten (pluk-tips, karper-quotes, geplukte dagen, bucketlist) · `lib/datum.ts` datumhelpers.
+- `public/img/` voor foto's en de favicon.
+- Lettertypes via `next/font/google`, aangesloten op de CSS-variabelen `--font-kop`, `--font-tekst` en `--font-hand`. Gebruik in SVG `fontFamily="var(--font-hand)"`, nooit de lettertypenaam zelf.
+- Lokaal bekijken: `npm run dev`, dan http://localhost:3000.
+
+### Datum en hydratatie
+
+De server staat in een andere tijdzone dan de bezoeker, dus niets dat van "vandaag" afhangt mag server-side gerenderd worden. Gebruik `useVandaag()`: die geeft `null` tot na hydratatie. Render in die eerste render dus geen datum, dagteller of quote-van-de-dag.
 
 ## Concept
 
